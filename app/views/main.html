@@ -1,0 +1,46 @@
+<div class="upper-bar">
+	<div class="cart" ng-click="showCart()" >
+		<i class="fa fa-shopping-cart" ></i>
+		<div class="item-count">
+			<h5>{{totalItems}}</h5>
+		</div>
+		<div id="cart-list">
+			<div class="purchase">
+				<h4>Your Purchase:</h4>
+				<div class="cart-items">
+					<div ng-repeat="purchase in purchases" class="item col-sm-3">
+						<img src="{{purchase.urlImage}}" alt="{{purchase.name}}">
+					</div>
+				</div>
+				<button type="button" class="btn btn-danger pay-btn" ng-click="processPayment()">Purchase Order</button>
+			</div>
+		</div>
+	</div>
+	<div id="credits">
+		<h3 class="total-credits">credits: <span class="total">{{credits| currency : $}}</span></h3>
+
+		<i class="credit-icon fa fa-usd" ng-click="open('credits')"></i> 
+		<div id="coins">
+			<ul class="coins-list">
+				<li ng-repeat="coin in coins"><img ng-src="{{coin.urlImage}}" class="" alt="{{coin.name}}" ng-click="addCredits({{coin.value}}) "></li>
+			</ul>
+			<ul class="bills-list">
+				<li ng-repeat="bill in bills"><img ng-src="{{bill.urlImage}}" alt="{{bill.name}}" ng-click="addCredits({{bill.value}}) "></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="products">
+	<div class="container-fluid">
+		<div ng-repeat="item in items">
+			<div class="item col-sm-3" ng-click="substractCredits({{item.price}},'{{item.name}}', '{{item.urlImage}}')">
+				<img src="{{item.urlImage}}" alt="{{item.name}}" >
+				<div class="item-data" >
+					<h3>{{item.name}}</h3>
+					<h4>{{item.price| currency : $}}</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
